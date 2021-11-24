@@ -128,24 +128,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
-# that shuld be hidden!!!!
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('db_name'),
-        'USER': os.environ.get('db_user'),
-        'PASSWORD': os.environ.get('db_user_passwd'),
-        'HOST': os.environ.get('db_host'),
-        'PORT': os.environ.get('db_port'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# for production that shuld be hidden!!!!
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': os.environ.get('db_name'),
+#        'USER': os.environ.get('db_user'),
+#        'PASSWORD': os.environ.get('db_user_passwd'),
+#        'HOST': os.environ.get('db_host'),
+#        'PORT': os.environ.get('db_port'),
+#    }
+#}
 
 
 # Password validation
@@ -204,11 +204,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 # that shuld be hidden!!!!
-AWS_QUERYSTRING_AUTH = False
-DEFAULT_FILE_STORAGE = os.environ.get('s3_FILES_STORAGE')
-AWS_ACCESS_KEY_ID = os.environ.get('s3_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = os.environ.get('s3_SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('s3_BUCKET_NAME')
+# uncomment at production version!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#AWS_QUERYSTRING_AUTH = False
+#DEFAULT_FILE_STORAGE = os.environ.get('s3_FILES_STORAGE')
+#AWS_ACCESS_KEY_ID = os.environ.get('s3_ACCESS_KEY')
+#AWS_SECRET_ACCESS_KEY = os.environ.get('s3_SECRET_KEY')
+#AWS_STORAGE_BUCKET_NAME = os.environ.get('s3_BUCKET_NAME')
 
 
 if os.getcwd() == '/app':
