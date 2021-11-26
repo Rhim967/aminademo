@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import Loader from '../components/Loader'
@@ -8,6 +9,7 @@ import { listOrders } from'../actions/orderActions'
 
 
 function OrderListScreen({ history }) {
+    const {t, i18n} = useTranslation()
 
     const dispatch = useDispatch()
 
@@ -28,7 +30,7 @@ function OrderListScreen({ history }) {
 
     return (
         <div>
-            <h2>Orders</h2>
+            <h2>{t("orders")}</h2>
             {loading 
                 ? (<Loader />)
                 : error
@@ -38,11 +40,11 @@ function OrderListScreen({ history }) {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>User</th>
-                                <th>Date</th>
-                                <th>Total</th>
-                                <th>Paid</th>
-                                <th>Delivered</th>
+                                <th>{t("user")}</th>
+                                <th>{t("date")}</th>
+                                <th>{t("total")}</th>
+                                <th>{t("paid")}</th>
+                                <th>{t("delivered")}</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -70,7 +72,7 @@ function OrderListScreen({ history }) {
                                     <td>
                                         <LinkContainer to={`/order/${order._id}/`}>
                                             <Button variant='dark' className='btn-sm'>
-                                                details
+                                                {t("details")} 
                                             </Button>
                                         </LinkContainer>
                                     </td>

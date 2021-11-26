@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import Loader from '../components/Loader'
@@ -10,6 +11,7 @@ import {PRODUCT_CREATE_RESET} from '../constants/productConstants'
 
 
 function ProductListScreen({ history, match }) {
+    const {t, i18n} = useTranslation()
 
     const dispatch = useDispatch()
 
@@ -54,11 +56,11 @@ function ProductListScreen({ history, match }) {
         <div>
             <Row className='align-items-center'>
                 <Col>
-                    <h2>Products</h2>
+                    <h2>{t("products")}</h2>
                 </Col>
                 <Col className='text-right'>
                     <Button className='my-3' style={{float: 'right'}} onClick={createProductHandler}>
-                        <i className='fas fa-plus'> Create Product</i>
+                        <i className='fas fa-plus'></i> {t("Create Product")}
                     </Button>
                 </Col>
             </Row>
@@ -79,10 +81,10 @@ function ProductListScreen({ history, match }) {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th>Brand</th>
+                                        <th>{t("productName")}</th>
+                                        <th>{t("price")}</th>
+                                        <th>{t("category")}</th>
+                                        <th>{t("brand")}</th>
                                         <th></th>
                                     </tr>
                                 </thead>

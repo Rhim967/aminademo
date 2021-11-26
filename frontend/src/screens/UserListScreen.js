@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
+import{ useTranslation } from 'react-i18next'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,6 +9,7 @@ import { listUsers, deleteUser } from'../actions/userActions'
 
 
 function UserListScreen({ history }) {
+    const {t, i18n} = useTranslation()
 
     const dispatch = useDispatch()
 
@@ -36,7 +38,7 @@ function UserListScreen({ history }) {
 
     return (
         <div>
-            <h2>Users</h2>
+            <h2>{t('users')}</h2>
             {loading 
                 ? (<Loader />)
                 : error
@@ -46,9 +48,9 @@ function UserListScreen({ history }) {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Admin</th>
+                                <th>{t('name')}</th>
+                                <th>{t('email')}</th>
+                                <th>{t('admin')}</th>
                                 <th></th>
                             </tr>
                         </thead>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import{ useTranslation } from 'react-i18next'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
@@ -8,6 +9,7 @@ import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 function PlaceOrderScreen({ history }) {
+    const {t, i18n} = useTranslation() 
 
     const orderCreate = useSelector(state => state.orderCreate)
     const {order, error, success} = orderCreate

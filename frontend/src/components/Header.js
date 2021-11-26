@@ -1,6 +1,8 @@
 import { Container, Navbar, Nav, NavDropdown, } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector} from 'react-redux'
+import{ useTranslation } from 'react-i18next'
+
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
@@ -8,6 +10,7 @@ import { logout } from '../actions/userActions'
 import React from 'react'
 
 function Header() {
+    const {t, i18n} = useTranslation()
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -41,17 +44,17 @@ function Header() {
                         <SearchBox />
                         <Nav className="me-auto">
                             {userInfo && userInfo.isAdmin && (
-                                    <NavDropdown title='Admin' id='adminmenue'>
+                                <NavDropdown title={t('admin')} id='adminmenue'>
                                         <LinkContainer to='/admin/userlist'>
-                                            <NavDropdown.Item>Users</NavDropdown.Item>
+                                            <NavDropdown.Item>{t('users')}</NavDropdown.Item>
                                         </LinkContainer>
 
                                         <LinkContainer to='/admin/productlist'>
-                                            <NavDropdown.Item>Products</NavDropdown.Item>
+                                            <NavDropdown.Item>{t('products')}</NavDropdown.Item>
                                         </LinkContainer>
 
                                         <LinkContainer to='/admin/orderlist'>
-                                            <NavDropdown.Item>Orders</NavDropdown.Item>
+                                            <NavDropdown.Item>{t('orders')}</NavDropdown.Item>
                                         </LinkContainer>
                                     </NavDropdown>
                                 )}
@@ -67,14 +70,14 @@ function Header() {
                             {userInfo ? (
                                 <NavDropdown title={userInfo.name} id='username'>
                                     <LinkContainer to='/profile'>
-                                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                                        <NavDropdown.Item>{t('profile')}</NavDropdown.Item>
                                     </LinkContainer>
 
-                                    <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={logoutHandler}>{t('logout')}</NavDropdown.Item>
                                 </NavDropdown>
                             ): (
                                     <LinkContainer to='/login'>
-                                        <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                        <Nav.Link><i className="fas fa-user"></i>{t('login')}</Nav.Link>
                                     </LinkContainer>
                                 )}
                         </Nav>

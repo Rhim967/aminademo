@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { Row, Col, ListGroup, Image, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
@@ -10,6 +11,8 @@ import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstant
 
 
 function OrderScreen({ match, history }) {
+    const {t, i18n} = useTranslation() 
+
     const orderId = match.params.id
     const dispatch = useDispatch()
 
@@ -76,17 +79,17 @@ function OrderScreen({ match, history }) {
         <Message variant='danger'>{error}</Message>
     ) : (
         <div>
-            <h2>Order: {order._id}</h2>
+            <h2>{t("order")}: {order._id}</h2>
             <Row>
                 <Col md={8}>
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
-                            <p><strong>Name: </strong>{order.user.name}</p>
-                            <p><strong>Email: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
+                            <h2>{t("shipping")}</h2>
+                            <p><strong>{t("name")}: </strong>{order.user.name}</p>
+                            <p><strong>{t("email")}: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
 
                             <p>
-                                <strong>Shipping: </strong>
+                                <strong>{t("shipping")}: </strong>
                                 {order.shippingAddress.address}, {order.shippingAddress.city}
                                 {'  '}
                                 {order.shippingAddress.postalCode}.
@@ -94,23 +97,23 @@ function OrderScreen({ match, history }) {
                                 {order.shippingAddress.country}
                             </p>
                             {order.isDelivered ? (
-                                <Message variant="success">Delivered on {order.deliveredAt}</Message>
+                                <Message variant="success">{t("Delivered on")} {order.deliveredAt}</Message>
                             ) : (
-                                    <Message variant="warning">Not Delivered</Message>
+                                    <Message variant="warning">{t("Not Delivered")}</Message>
                             )}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Payment Method</h2>
+                            <h2>{t("Payment Method")}</h2>
 
                             <p>
-                                <strong>Method: </strong>
+                                <strong>{t("method")}: </strong>
                                 {order.paymentMethod}
                             </p>
                             {order.isPaid ? (
-                                <Message variant="success">Paid on {order.paidAt.substring(0, 16)}</Message>
+                                <Message variant="success">{t("Paid on")}: {order.paidAt.substring(0, 16)}</Message>
                             ) : (
-                                    <Message variant="warning">Not Paid</Message>
+                                <Message variant="warning">{t("Not Paid")}</Message>
                             )}
                         </ListGroup.Item>
 

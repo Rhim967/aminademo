@@ -1,7 +1,9 @@
+import {Suspense} from 'react'
 import { Container,  } from 'react-bootstrap'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
 
+import i18n from'./i18n'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
@@ -23,6 +25,7 @@ import ProductEditScreen from './screens/ProductEditScreen'
 
 function App() {
   return (
+      <Suspense>
     <Router>
       <Header/>
       <main className='py-3'>
@@ -49,6 +52,7 @@ function App() {
       </main>
       <Footer/>
     </Router>
+      </Suspense>
   );
 }
 

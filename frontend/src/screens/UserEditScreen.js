@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import Loader from '../components/Loader'
@@ -9,6 +10,7 @@ import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 function UserEditScreen({match, history}) {
+    const {t, i18n} = useTranslation()
 
     const userId = match.params.id
 
@@ -50,11 +52,11 @@ function UserEditScreen({match, history}) {
         <div>
 
             <Link to='/admin/userlist'>
-                Go back
+                {t("goBack")}
             </Link>
 
             <FormContainer>
-                <h2>Edit user</h2>
+                <h2>{t("Edit user")}</h2>
                 {loadingUpdate && <Loader/>}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> 
@@ -62,7 +64,7 @@ function UserEditScreen({match, history}) {
                         <Form onSubmit={submitHandler}>
 
                             <Form.Group controlId="name">
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label>{t("name")}</Form.Label>
                                 <Form.Control
                                     type="name"
                                     placeholder="Enter your name"
@@ -73,7 +75,7 @@ function UserEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group controlId="email">
-                                <Form.Label>Email address</Form.Label>
+                                <Form.Label>{t("email")}</Form.Label>
                                 <Form.Control
                                     type="email"
                                     placeholder="example@gmail.com"
@@ -86,15 +88,15 @@ function UserEditScreen({match, history}) {
                             <Form.Group controlId="isadmin">
                                 <Form.Check
                                     type="checkbox"
-                                    label="is Admin"
+                                    label={t("admin")}
                                     checked={isAdmin}
                                     onChange={(e) => setIsAdmin(e.target.checked)}
                                 >
                                 </Form.Check>
                             </Form.Group>
 
-                            <Button type="submit" variant="primary">
-                                Update
+                            <Button className="mt-3" type="submit" variant="primary">
+                                {t("update")} 
                             </Button>
 
                         </Form>

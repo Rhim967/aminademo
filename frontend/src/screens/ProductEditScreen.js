@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
@@ -10,6 +11,7 @@ import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 function ProductEditScreen({match, history}) {
+    const {t, i18n} = useTranslation()
 
     const productId = match.params.id
 
@@ -97,11 +99,11 @@ function ProductEditScreen({match, history}) {
         <div>
 
             <Link to='/admin/productlist'>
-                Go back
+                {t('goBack')}
             </Link>
 
             <FormContainer>
-                <h2>Edit product</h2>
+                <h2>{t("Edit product")}</h2>
                 {loadingUpdate && <Loader/>}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
@@ -110,7 +112,7 @@ function ProductEditScreen({match, history}) {
                         <Form onSubmit={submitHandler}>
 
                             <Form.Group controlId="name">
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label>{t("productName")}</Form.Label>
                                 <Form.Control
                                     type="name"
                                     placeholder="Enter your name"
@@ -121,7 +123,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group controlId="price">
-                                <Form.Label>Price</Form.Label>
+                                <Form.Label>{t("price")}</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder="Enter price"
@@ -132,7 +134,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group controlId='image'>
-                                <Form.Label>Image</Form.Label>
+                                <Form.Label>{t("image")}</Form.Label>
                                 <Form.Control
                                     type='text'
                                     placeholder='Enter image'
@@ -151,7 +153,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
                                                         
                             <Form.Group controlId="brand">
-                                <Form.Label>Brand</Form.Label>
+                                <Form.Label>{t("brand")}</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter brand"
@@ -162,7 +164,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group controlId="category">
-                                <Form.Label>Category</Form.Label>
+                                <Form.Label>{t("category")}</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter category"
@@ -173,7 +175,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group controlId="countInStock">
-                                <Form.Label>Stock</Form.Label>
+                                <Form.Label>{t("stock")}</Form.Label>
                                 <Form.Control
                                     type="number"
                                     placeholder="Enter countInStock"
@@ -184,7 +186,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Form.Group className='py-3' controlId="description">
-                                <Form.Label>Description</Form.Label>
+                                <Form.Label>{t("description")}</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Enter description"
@@ -195,7 +197,7 @@ function ProductEditScreen({match, history}) {
                             </Form.Group>
 
                             <Button type="submit" variant="primary">
-                                Update
+                                {t("update")} 
                             </Button>
 
                         </Form>
