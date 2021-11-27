@@ -1,5 +1,5 @@
-
 import React, {useState, } from 'react' //useEffect
+import{ useTranslation } from 'react-i18next'
 import { Form, Button, Col } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { savePaymentMethod } from '../actions/cartActions'
 
 function PaymentScreen({history}) {
+    const {t, i18n} = useTranslation()
 
     const cart = useSelector(state => state.cart)
     const {shippingAddress} = cart
@@ -31,7 +32,7 @@ function PaymentScreen({history}) {
 
             <Form onSubmit={submitHandler}>
                 <Form.Group>
-                    <Form.Label as='legend'>Select Method</Form.Label>
+                    <Form.Label as='legend'>{t("Select Method")}</Form.Label>
 
                     <Col>
                         <Form.Check
@@ -48,7 +49,7 @@ function PaymentScreen({history}) {
                 </Form.Group>
 
                 <Button className='mt-2' type='submit' variant='primary'>
-                    Continue
+                    {t("Continue")} 
                 </Button>
             </Form>
 

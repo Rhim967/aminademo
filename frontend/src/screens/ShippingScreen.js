@@ -1,5 +1,5 @@
-
 import React, {useState, } from 'react' //useEffect
+import{ useTranslation } from 'react-i18next'
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
 
 function ShippingScreen({history}) {
+    const {t, i18n} = useTranslation()
 
     const cart = useSelector(state => state.cart)
     const {shippingAddress} = cart
@@ -28,10 +29,10 @@ function ShippingScreen({history}) {
     return (
         <FormContainer>
             <CheckoutSteps step1 step2/>
-            <h2>Shipping</h2>
+            <h2>{t("shipping address")}</h2>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId="address">
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>{t("Address")}</Form.Label>
                     <Form.Control
                         required
                         type="text"
@@ -43,7 +44,7 @@ function ShippingScreen({history}) {
                 </Form.Group>
 
                 <Form.Group controlId="city">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>{t("City")}</Form.Label>
                     <Form.Control
                         required
                         type="text"
@@ -55,7 +56,7 @@ function ShippingScreen({history}) {
                 </Form.Group>
 
                 <Form.Group controlId="postalCode">
-                    <Form.Label>Postal Code</Form.Label>
+                    <Form.Label>{t("Postal Code")}</Form.Label>
                     <Form.Control
                         required
                         type="text"
@@ -67,7 +68,7 @@ function ShippingScreen({history}) {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="country">
-                    <Form.Label>Country</Form.Label>
+                    <Form.Label>{t("Country")}</Form.Label>
                     <Form.Control
                         required
                         type="text"
@@ -79,7 +80,7 @@ function ShippingScreen({history}) {
                 </Form.Group>
 
                 <Button className="product-btn" type='submit' variant='primary'>
-                    Continue
+                    {t("Continue")} 
                 </Button>
 
             </Form>

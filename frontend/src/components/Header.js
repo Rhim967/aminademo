@@ -1,7 +1,8 @@
-import { Container, Navbar, Nav, NavDropdown, } from 'react-bootstrap'
+import { Container, Form, Row, Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector} from 'react-redux'
 import{ useTranslation } from 'react-i18next'
+import { i18n } from '../i18n'
 
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
@@ -22,6 +23,13 @@ function Header() {
 
     const logoutHandler = () => {
         dispatch(logout())
+    }
+
+    const changeLang = (ln) => {
+        return () => {
+            i18n.changeLang(ln)
+            console.log(`language has changed to ${ln}`)
+        }
     }
 
     return (

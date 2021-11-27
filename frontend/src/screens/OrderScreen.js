@@ -39,7 +39,7 @@ function OrderScreen({ match, history }) {
     const addPayPalScript = () => {
         const script = document.createElement('script')
         script.type = 'text/javascript'
-        script.src = 'https://www.paypal.com/sdk/js?client-id=AQHrbC-Z5_Mhsqj1_1N6GHpiNepAXAT9LUFP5RF1BVT0kaCMdSyPefjdbwqEtEzsCfTy1yzWiAhlICRu'
+        script.src = 'https://www.paypal.com/sdk/js?client-id=AQHrbC-Z5_Mhsqj1_1N6GHpiNepAXAT9LUFP5RF1BVT0kaCMdSyPefjdbwqEtEzsCfTy1yzWiAhlICRu' // this shuld be hide!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         script.async = true
         script.onload = () => {
             setSdkReady(true)
@@ -89,7 +89,7 @@ function OrderScreen({ match, history }) {
                             <p><strong>{t("email")}: </strong><a href={`mailto:${order.user.email}`}>{order.user.email}</a></p>
 
                             <p>
-                                <strong>{t("shipping")}: </strong>
+                                <strong>{t("shipping address")}: </strong>
                                 {order.shippingAddress.address}, {order.shippingAddress.city}
                                 {'  '}
                                 {order.shippingAddress.postalCode}.
@@ -118,9 +118,9 @@ function OrderScreen({ match, history }) {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Order Items</h2>
+                            <h2>{t("Order Items")}</h2>
                             {order.orderItems.length === 0 ? <Message variant="info">
-                            your order is empty
+                                {t("your order is empty")} 
                             </Message>: (
                                 <ListGroup variant="flush">
                                     {order.orderItems.map((item, index) => (
@@ -156,33 +156,33 @@ function OrderScreen({ match, history }) {
                     <Card>
                         <ListGroup variant="flush">
                             <ListGroup.Item>
-                                <h2>Order Summary</h2>
+                                <h2>{t("total")}</h2>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Item: </Col>
+                                    <Col>{t("Order Items")}: </Col>
                                     <Col>$ {order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping: </Col>
+                                    <Col>{t("shipping")}: </Col>
                                     <Col>$ {order.shipingPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Tax: </Col>
+                                    <Col>{t("tax")}: </Col>
                                     <Col>$ {order.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Total: </Col>
+                                    <Col>{t("total")}: </Col>
                                     <Col>$ {order.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>

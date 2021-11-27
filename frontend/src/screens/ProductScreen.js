@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {Row, Col, Image, Card, ListGroup, Button, Form } from 'react-bootstrap'
@@ -12,6 +13,8 @@ import {PRODUCT_CREATE_REVIEW_RESET} from '../constants/productConstants'
 
 
 function ProductScreen({ match, history }) {
+    const {t, i18n} = useTranslation()
+
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
@@ -55,7 +58,7 @@ function ProductScreen({ match, history }) {
 
     return (
         <div>
-            <Link to='/' className='btn btn-dark my-3'>Go back</Link> <br/>
+            <Link to='/' className='btn btn-dark my-3'>{t("goBack")}</Link> <br/>
 
             {loading ?
                 <Loader />
@@ -79,7 +82,7 @@ function ProductScreen({ match, history }) {
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
-                                        Price: $ {product.price}
+                                        {t("price")}: $ {product.price}
                                     </ListGroup.Item>
 
                                     <ListGroup.Item>
@@ -94,7 +97,7 @@ function ProductScreen({ match, history }) {
                                         <ListGroup variant="flush">
                                             <ListGroup.Item>
                                                 <Row>
-                                                    <Col>Price:</Col>
+                                                    <Col>{t("price")}:</Col>
                                                     <Col>
                                                         <strong>$ {product.price}</strong>
                                                     </Col>
@@ -103,9 +106,9 @@ function ProductScreen({ match, history }) {
 
                                             <ListGroup.Item>
                                                 <Row>
-                                                    <Col>Status:</Col>
+                                                    <Col>{t("status")}:</Col>
                                                     <Col>
-                                                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                                                        {product.countInStock > 0 ? t("In Stock") : t("Out of Stock")}
                                                     </Col>
                                                 </Row>
                                             </ListGroup.Item>
@@ -113,7 +116,7 @@ function ProductScreen({ match, history }) {
                                             {product.countInStock > 0 && (
                                                 <ListGroup.Item>
                                                     <Row>
-                                                        <Col>Qty</Col>
+                                                        <Col>{t("Qty")}</Col>
                                                         <Col xs='auto' className='my-2'>
                                                             <Form.Select
                                                                 as='select'
@@ -139,7 +142,7 @@ function ProductScreen({ match, history }) {
                                                 className=" product-btn btn-black" 
                                                 disabled={product.countInStock <= 0} 
                                                 type="button">
-                                                    Add to Cart
+                                                    {t("Add to Cart")} 
                                                 </Button>
                                             </ListGroup.Item>
                                         </ListGroup>
@@ -149,21 +152,21 @@ function ProductScreen({ match, history }) {
                         </Row>  
                         <Row>
                             <Col md={6}>
-                                <h4 className='my-3'>Reviews</h4>
+                                <h4 className='my-3'>{t("Reviews")}</h4>
                                 {product.reviews.length === 0 && <Message variant='info'>No reviews</Message>}
                                 <ListGroup variant='flush'>
                                     {product.reviews.map((review) => (
                                         <ListGroup.Item key={review._id}>
                                             <strong>{review.name}</strong>
                                             <Rating value={review.rating} color='#f8e825'/>
-                                            <p>date: {review.createdAt.substring(0,10)}</p>
+                                            <p>{t("date")}: {review.createdAt.substring(0,10)}</p>
                                             <p>{review.comment}</p>
                                         </ListGroup.Item>
                                     ))}
 
 
                                     <ListGroup>
-                                    <h4 className='my-3'>Write a reviews</h4>
+                                    <h4 className='my-3'>{t("Write a reviews")}</h4>
                                         {loadingProductReview && <Loader />}
                                         {successProductReview && <Message variant='success'>Review Submitted</Message>}
                                         {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
@@ -171,7 +174,7 @@ function ProductScreen({ match, history }) {
                                         {userInfo ? (
                                             <Form onSubmit={submitHandler}>
                                                 <Form.Group controlId='rating'>
-                                                    <Form.Label>Rating</Form.Label>
+                                                    <Form.Label>{t("Rating")}</Form.Label>
                                                     <Form.Control
                                                         as='select'
                                                         value={rating}
@@ -187,7 +190,7 @@ function ProductScreen({ match, history }) {
                                                 </Form.Group>
 
                                                 <Form.Group className='my-3' controlId='comment'>
-                                                    <Form.Label>Review</Form.Label>
+                                                    <Form.Label>{t("Review")}</Form.Label>
                                                     <Form.Control
                                                         as='textarea'
                                                         row='5'
@@ -201,7 +204,7 @@ function ProductScreen({ match, history }) {
                                                     type='submit'
                                                     variant='primary'
                                                 >
-                                                    Submit
+                                                    {t("submit")} 
                                                 </Button>
 
                                             </Form>

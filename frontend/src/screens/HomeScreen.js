@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react' // useState
+import{ useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col} from 'react-bootstrap'
 import Product from '../components/Product'
@@ -12,6 +13,8 @@ import { listProducts } from '../actions/productActions'
 
 
 function HomeScreen({history}) {
+    const {t, i18n} = useTranslation()
+
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const {error, loading, products, pages, page} = productList
@@ -29,7 +32,7 @@ function HomeScreen({history}) {
         <div>
             {!keyword && <ProductCarousel/>}
             
-            <h2>Latest Products</h2>
+            <h2>{t("Latest Products")}</h2>
             {loading ? <Loader />
                 :error ? <Message variant='danger'>{error}</Message>
                     :

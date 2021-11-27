@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import Loader from '../components/Loader'
@@ -8,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../actions/userActions'
 
 function RegisterScreen({location, history}) {
+    const {t, i18n} = useTranslation()
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -39,14 +42,14 @@ function RegisterScreen({location, history}) {
 
     return (
         <FormContainer>
-            <h2>Register</h2>
+            <h2>{t("Register")}</h2>
             {message && <Message variant='danger' >{message}</Message>}
             {error && <Message variant='danger' >{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>{t("name")}</Form.Label>
                     <Form.Control
                         required
                         type="name"
@@ -58,7 +61,7 @@ function RegisterScreen({location, history}) {
                 </Form.Group>
 
                 <Form.Group controlId="email">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>{t("email")}</Form.Label>
                     <Form.Control
                         required
                         type="email"
@@ -70,7 +73,7 @@ function RegisterScreen({location, history}) {
                 </Form.Group>
 
                 <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>{t("password")}</Form.Label>
                     <Form.Control
                         required
                         type="password"
@@ -82,7 +85,7 @@ function RegisterScreen({location, history}) {
                 </Form.Group>
 
                 <Form.Group  className='mb-3' controlId="confirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label>{t("confirm password")}</Form.Label>
                     <Form.Control
                         required
                         type="password"
@@ -94,15 +97,15 @@ function RegisterScreen({location, history}) {
                 </Form.Group>
 
                 <Button type="submit" variant="primary">
-                    register
+                    {t("Register")} 
                 </Button>
 
             </Form>
 
             <Row className="py-3">
                 <Col>
-                    Have An Account ? <Link 
-                    to={redirect ? `/login?redirect=${redirect}` : '/login'}>sign in</Link>
+                    {t("Have An Account")} <Link 
+                    to={redirect ? `/login?redirect=${redirect}` : '/login'}>{t("sign in")}</Link>
                 </Col>
             </Row>
 

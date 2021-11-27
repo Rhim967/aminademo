@@ -10,8 +10,8 @@ const resources = {
         translation: translationEN
     },
     ru: {
-        translation: translationRU
-    }
+      translation: translationRU
+  }
 };
 
 i18n
@@ -27,3 +27,5 @@ i18n
         }
     });
 export default i18n
+
+

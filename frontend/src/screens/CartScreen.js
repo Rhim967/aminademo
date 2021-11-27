@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import{ useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
@@ -6,6 +7,8 @@ import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
 function CartScreen({match, location, history}) {
+    const {t, i18n} = useTranslation()
+
     const productId = match.params.id
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -48,7 +51,7 @@ function CartScreen({match, location, history}) {
                 <Col md={8}>
                     {cartItems.length === 0 ? (
                         <Message variant='info'>
-                            Your cart is empty <Link to='/'>Go Back</Link>
+                            {t("Your cart is empty")} <Link to='/'>{t("goBack")}</Link>
                         </Message>
                     ): (
                         <ListGroup variant='flash'>
@@ -103,7 +106,7 @@ function CartScreen({match, location, history}) {
                     <Card>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
-                                <h3>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h3>
+                                <h3>{t("Subtotal")} ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) {t("items")}</h3>
                                 ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                             </ListGroup.Item>
                         </ListGroup>
@@ -115,7 +118,7 @@ function CartScreen({match, location, history}) {
                                 disabled={cartItems.length === 0}
                                 onClick={checkoutHendler}
                             >
-                                Proceed To Checkout
+                                {t("Proceed To Checkout")} 
                             </Button>
                         </ListGroup.Item>
                     </Card>
