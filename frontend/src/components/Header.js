@@ -95,7 +95,6 @@ function Header() {
                 <i class="fas fa-globe"></i>
                 <button className="language-btn " value="en" onClick={onChange}>{t("English")}</button>
             </div>
-
         </header>
     )
 }

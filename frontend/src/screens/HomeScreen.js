@@ -11,7 +11,6 @@ import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../actions/productActions'
 
 
-
 function HomeScreen({history}) {
     const {t, i18n} = useTranslation()
 
