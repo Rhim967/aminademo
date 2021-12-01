@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY') #'django-insecure-177%tyn36h*b^h-tfjh3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'demombb.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'demombb.herokuapp.com', 'aminademo.herokuapp.com']
 
 
 # Application definition
