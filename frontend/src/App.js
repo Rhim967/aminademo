@@ -25,6 +25,7 @@ import ProductEditScreen from './screens/ProductEditScreen'
 
 function App() {
   return (
+      <Suspense fallback="loading...">
     <Router>
       <Header/>
       <main className='py-3'>
@@ -51,6 +52,7 @@ function App() {
       </main>
       <Footer/>
     </Router>
+      </Suspense>
   );
 }
 

@@ -19,6 +19,20 @@ h3 {
   width: 100%;
 }
 
+.lang-box{
+    margin: 10px 5px 0 5px;
+    size: 99px;
+    display: flex;
+    justify-content: center;
+}
+.language-btn{
+    display: inline-block;
+    border: none;
+    background: none;
+    color: black;
+    font-size: 18px;
+}
+
 #cart_mobile {
     display: none;
 }

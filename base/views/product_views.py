@@ -16,7 +16,7 @@ def getProducts(request):
     print('query:', query)
     if query == None:
         query = ''
-    products = Product.objects.filter(name__icontains=query)
+    products = Product.objects.filter(name__icontains=query)[::-1]
 
     page = request.query_params.get('page')
     paginator = Paginator(products, 12)

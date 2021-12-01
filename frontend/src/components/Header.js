@@ -25,21 +25,19 @@ function Header() {
         dispatch(logout())
     }
 
-    const changeLang = (ln) => {
-        return () => {
-            i18n.changeLang(ln)
-            console.log(`language has changed to ${ln}`)
-        }
+    const onChange = (e) => {
+        e.preventDefault();
+        i18n.changeLanguage(e.target.value)
     }
-
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
                 <Container>
                     <LinkContainer to='/'> 
-                        <Navbar.Brand >Amina Shop</Navbar.Brand>
+                        <Navbar.Brand >MB</Navbar.Brand>
                     </LinkContainer>
                     <Nav id='mobile_nav'>
+
                         <LinkContainer id='cart_mobile' to='/cart'>
                             <Nav.Link>
                                 <i className="fas fa-shopping-cart"></i>({cartItems.reduce((acc, item) => acc + item.qty, 0)})
@@ -92,6 +90,12 @@ function Header() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <div className="lang-box">
+                <button className="language-btn " value="ru" onClick={onChange}>{t("Russian")}</button>
+                <i class="fas fa-globe"></i>
+                <button className="language-btn " value="en" onClick={onChange}>{t("English")}</button>
+            </div>
+
         </header>
     )
 }
